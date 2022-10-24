@@ -1,0 +1,25 @@
+.App {
+  padding: 2%;
+  height: 100vh;
+  font-family: "Arial";
+  background-color:rgb(204, 199, 199);
+}
+.head-title {
+  text-align: center;
+}
+.left-panel {
+  flex: 5;
+}
+.right-panel {
+  margin-left: 100px;
+  flex: 5;
+  padding: 5px 10px 10px 10px;
+  border-radius: 10px;
+}
+.box {
+  border: 1px solid black;
+}
+.row {
+  display: flex;
+  height: 100%;
+}
