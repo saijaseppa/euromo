@@ -23,3 +23,12 @@
   display: flex;
   height: 100%;
 }
+.notification {
+  color: rgb(150, 74, 3);
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}

@@ -4,20 +4,18 @@ import { useEffect, useRef } from "react";
 import Neovis from "neovis.js/dist/neovis.js";
 import { useState } from "react";
 
-/* 
- * VisualGraph is a component that pulls data from database. With neovis.js 
- * the graph is drawn visual.
- */ 
-
 const VisualGraph = (props) => {
   const {
+    width,
+    height,
     containerId,
     backgroundColor,
     neo4jUri,
     neo4jUser,
     neo4jPassword,
+    cypher,
+    notification
   } = props;
-
 
   const visRef = useRef();
 
@@ -27,7 +25,6 @@ const VisualGraph = (props) => {
       server_url: neo4jUri,
       server_user: neo4jUser,
       server_password: neo4jPassword,
-      // Labels ae modifying the visual appearance of the nodes. 
       labels: {
         Persons: {
           caption: "Name",
@@ -46,36 +43,69 @@ const VisualGraph = (props) => {
           group: "community",
         }
       },
-      // Relationships are modifying the visual appearance of the relationships of the nodes. 
       relationships: {
         OWNS: {
-          caption: true
+          caption: true,
+          
         },
         FROM: {
           caption: true
         }
       },
-      // For now this is the place where the cypher statement is defined. 
-      initial_cypher: 
+      arrows: true,
+      initial_cypher: cypher
         // myös relationship pitää olla returnissa jotta kaaret näkyy
-        "MATCH (x:Country{Name:'Austria'})<-[r:FROM]-(z:Legal_owners)-[o:OWNS]-(w:Legal_owners)-[e:FROM]-> (y:Country{Name:'Germany'}) return x,y,z,w,r,o,e"
+        //"MATCH (x:Country{Name:'Austria'})<-[r:FROM]-(z:Legal_owners)-[o:OWNS]-(w:Legal_owners)-[e:FROM]-> (y:Country{Name:'Germany'}) return x,y,z,w,r,o,e"
         //"MATCH (x:Outlets{Name:'Aamulehti'}) <–[i:OWNS]-(y:Legal_owners) <-[j:OWNS]- (z:Persons{Name:'Jalkanen'}) return x,y,z,i,j",
         //"MATCH (x:Outlets{Name:'Aamulehti'}) <–[i:OWNS]-(y:Legal_owners) return x,y,i",
     };
+      //"MATCH (x:Persons{Name:'Jalkanen'})-->(y:Legal_owners) MATCH (y)-[*]->(z) return x,y,z"
     const vis = new Neovis(config);
+
+    //sending info of success of vis rendering
+    notification(vis);
     vis.render();
-  }, []);
+    
+  }, [cypher]);
 
   return (
     <div
       id={containerId}
       ref={visRef}
       style={{
+        
         backgroundColor: `${backgroundColor}`,
       }}
     />
   );
 };
+
+/*
+
+width: `${width}px`,
+        height: `${height}px`,
+        VisualGraph.defaultProps = {
+  width: 600,
+  height: 600,
+  backgroundColor: "#d3d3d3",
+};*/
+/*
+const ResponsiveNeoGraph = (props) => {
+  const [resizeListener, sizes] = useResizeAware();
+
+  const side = Math.max(sizes.width, sizes.height) / 2;
+  const neoGraphProps = { ...props, width: side, height: side };
+  return (
+    <div style={{ position: "relative" }}>
+      {resizeListener}
+      <VisualGraph {...neoGraphProps} />
+    </div>
+  );
+};
+
+ResponsiveNeoGraph.defaultProps = {
+  backgroundColor: "#d3d3d3",
+};*/
 
 
 export { VisualGraph };
