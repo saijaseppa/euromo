@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 //import useResizeAware from "react-resize-aware";
 //import PropTypes from "prop-types";
 import Neovis from "neovis.js/dist/neovis.js";
-import { useState } from "react";
 
 const VisualGraph = (props) => {
   const {
@@ -73,7 +72,7 @@ const VisualGraph = (props) => {
       id={containerId}
       ref={visRef}
       style={{
-        
+        width: "90%",
         backgroundColor: `${backgroundColor}`,
       }}
     />

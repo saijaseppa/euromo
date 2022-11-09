@@ -2,11 +2,12 @@
   padding: 2%;
   height: 100vh;
   font-family: "Arial";
-  background-color:rgb(204, 199, 199);
+  background-color:rgb(255, 255, 255);
 }
 .head-title {
-  text-align: center;
+  /*text-align: center;*/
 }
+
 .left-panel {
   flex: 5;
 }
@@ -15,9 +16,6 @@
   flex: 5;
   padding: 5px 10px 10px 10px;
   border-radius: 10px;
-}
-.box {
-  border: 1px solid black;
 }
 .row {
   display: flex;
@@ -31,4 +29,38 @@
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+}
+.box {
+  border: 1px solid black;
+}
+.result-title {
+  text-align: center;
+}
+.btn-group .selectButton {
+  color: rgb(0, 0, 0);
+  background: rgb(121, 151, 134);
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px;
+  transition-duration: 0.4s;
+  float: left;
+}
+.btn-group .selectButton:not(:last-child) {
+  border-right: none;
+}
+.btn-group .selectButton:hover {
+  background-color: #338636;
+  color: rgb(0, 0, 0);
+}
+.cancel-button {
+  /*background-color: #a12828;*/
+  color: #a12828;
+}
+.basic-search-options {
+
+}
+.adv-search-selections {
+  font-weight: bold;
 }
