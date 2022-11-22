@@ -1,6 +1,6 @@
 ## EUROMO
 
-Project is pulling data from neo4j. Initial cypher is defined in component VisualGraph. Form component on the right side of the screen is not working yet. 
+Project is pulling data from neo4j. 
 
 
 ## To get the project work
