@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VisualGraph, ResponsiveNeoGraph } from "./components/VisualGraph";
 import Form from "./components/Form"
 import Logo from "./components/Logo";
-
 import './app.css'
 
-const NEO4J_URI = "bolt://localhost:7687";
-const NEO4J_USER = "neo4j";
-const NEO4J_PASSWORD = "testitesti";
 
-const Start = () => {
+const Start = ({ uri, user, password }) => {
+  
+  const NEO4J_URI = uri;
+  const NEO4J_USER = user;
+  const NEO4J_PASSWORD = password;
+
   const [cypher, setCypher] = useState('');
   //const [message, setMessage] = useState(null);
   const [showNotification, setShowNotification] = useState(false);
@@ -82,36 +83,36 @@ const Start = () => {
 
   return (
     <div className="App">
-        < Logo />
-        <h2 className="head-title">Visualized data query</h2>
-        {showNotification ? (
-          <div className="notification">No results!</div>
-        ) : null}
-        <br />
+      < Logo />
+      <h2 className="head-title">Visualized data query</h2>
+      {showNotification ? (
+        <div className="notification">No results!</div>
+      ) : null}
+      <br />
 
-        {searchDone ? (
-          <h3 className="result-title">Results for {searchPhrase}</h3>
-        ) : null}
+      {searchDone ? (
+        <h3 className="result-title">Results for {searchPhrase}</h3>
+      ) : null}
 
-        <div className="row">
-          <Form className="left-panel"
-            formCypherForTwoCountries={formCypherForTwoCountries}
-            formCypherForPersonOutlet={formCypherForPersonOutlet}
-            formCypherForOutlet={formCypherForOutlet}
-            formCypherForSubstring={formCypherForSubstring}
-            formCypherForPerson={formCypherForPerson}
-            formCypherForLegal_owner={formCypherForLegal_owner}
-          />
-          <VisualGraph className="right-panel"
-            containerId={"id1"}
-            neo4jUri={NEO4J_URI}
-            neo4jUser={NEO4J_USER}
-            neo4jPassword={NEO4J_PASSWORD}
-            cypher={cypher}
-            notification={notification}
-          />
-        </div>
+      <div className="row">
+        <Form className="left-panel"
+          formCypherForTwoCountries={formCypherForTwoCountries}
+          formCypherForPersonOutlet={formCypherForPersonOutlet}
+          formCypherForOutlet={formCypherForOutlet}
+          formCypherForSubstring={formCypherForSubstring}
+          formCypherForPerson={formCypherForPerson}
+          formCypherForLegal_owner={formCypherForLegal_owner}
+        />
+        <VisualGraph className="right-panel"
+          containerId={"id1"}
+          neo4jUri={NEO4J_URI}
+          neo4jUser={NEO4J_USER}
+          neo4jPassword={NEO4J_PASSWORD}
+          cypher={cypher}
+          notification={notification}
+        />
       </div>
+    </div>
   )
 }
 

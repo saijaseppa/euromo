@@ -35,22 +35,21 @@ const AddNode = ({ addNode }) => {
 
   useEffect(() => {
     if (selectedNode !== null) {
-      //setSelectedProperty('');
-      //setSelectedPropertyList(null);
-      //setChooseProperties(false);
-      //setGivePropertyName(false);
       if (selectedNode.value === "Country") {
         setSelectedPropertyList(CountryPropertyList);
         setChooseProperties(true);
       }
       if (selectedNode.value === "Person") {
-
+        setSelectedPropertyList(PersonPropertyList);
+        setChooseProperties(true);
       }
       if (selectedNode.value === "Legal_owner") {
-
+        setSelectedPropertyList(Legal_ownerPropertyList);
+        setChooseProperties(true);
       }
       if (selectedNode.value === "Outlet") {
-
+        setSelectedPropertyList(OutletPropertyList);
+        setChooseProperties(true);
       }
       if (selectedNode.value === "any node") {
         setReadySubmit(true);

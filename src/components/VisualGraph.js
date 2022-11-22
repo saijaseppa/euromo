@@ -20,6 +20,10 @@ const VisualGraph = (props) => {
 
   useEffect(() => {
     const config = {
+      //if connecting via localhost, hide these two rows:
+      // encrypted and trust
+      encrypted:"ENCRYPTION_ON", 
+      trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES", 
       container_id: visRef.current.id,
       server_url: neo4jUri,
       server_user: neo4jUser,
@@ -53,12 +57,7 @@ const VisualGraph = (props) => {
       },
       arrows: true,
       initial_cypher: cypher
-        // myös relationship pitää olla returnissa jotta kaaret näkyy
-        //"MATCH (x:Country{Name:'Austria'})<-[r:FROM]-(z:Legal_owners)-[o:OWNS]-(w:Legal_owners)-[e:FROM]-> (y:Country{Name:'Germany'}) return x,y,z,w,r,o,e"
-        //"MATCH (x:Outlets{Name:'Aamulehti'}) <–[i:OWNS]-(y:Legal_owners) <-[j:OWNS]- (z:Persons{Name:'Jalkanen'}) return x,y,z,i,j",
-        //"MATCH (x:Outlets{Name:'Aamulehti'}) <–[i:OWNS]-(y:Legal_owners) return x,y,i",
     };
-      //"MATCH (x:Persons{Name:'Jalkanen'})-->(y:Legal_owners) MATCH (y)-[*]->(z) return x,y,z"
     const vis = new Neovis(config);
 
     //sending info of success of vis rendering
