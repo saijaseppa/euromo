@@ -29,6 +29,12 @@ const Start = ({ uri, user, password }) => {
     setSearchDone(true);
   }
 
+  const formCypherForOutletLegal_owner = ({ outlet, legal_owner }) => {
+    setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*..6]- (y:Legal_owners) <-[j:OWNS*..6]- (z:Legal_owners{Name:'${legal_owner}'}) return x,y,z,i,j`);
+    setSearchPhrase(`${legal_owner} and ${outlet}`);
+    setSearchDone(true);
+  }
+
   const formCypherForOutlet = ({ outlet, type }) => {
     if (type === "single") {
       setCypher(`MATCH (n{Name:"${outlet}"}) return n`);
@@ -102,6 +108,7 @@ const Start = ({ uri, user, password }) => {
           formCypherForSubstring={formCypherForSubstring}
           formCypherForPerson={formCypherForPerson}
           formCypherForLegal_owner={formCypherForLegal_owner}
+          formCypherForOutletLegal_owner={formCypherForOutletLegal_owner}
         />
         <VisualGraph className="right-panel"
           containerId={"id1"}

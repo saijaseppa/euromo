@@ -7,8 +7,9 @@ import PersonForm from "./Basic-search/PersonForm";
 import SubstringForm from "./Basic-search/SubstringForm";
 import SearchForm from "./Advanced-search/SearchForm";
 import Legal_ownerForm from "./Basic-search/Legal_ownerForm";
+import OutletLegalOwnerForm from "./Basic-search/OuletLegalOwnerForm";
 
-const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypherForOutlet, formCypherForSubstring, formCypherForPerson, formCypherForLegal_owner }) => {
+const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypherForOutlet, formCypherForSubstring, formCypherForPerson, formCypherForLegal_owner, formCypherForOutletLegal_owner }) => {
 
   const cypherFormRef = useRef();
 
@@ -36,6 +37,14 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
     }
     formCypherForPersonOutlet(search);
     cypherFormRef.current.toggleVisibility();
+  }
+
+  const searchOutletLegal_owner = (legal_owner, outlet) => {
+    const search = {
+      legal_owner: capitalizeFirstLetter(legal_owner),
+      outlet: capitalizeFirstLetter(outlet)
+    }
+    formCypherForOutletLegal_owner(search);
   }
 
   const searchOutlet = (outlet, type) => {
@@ -95,6 +104,7 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
           <br />
           <br />
           <div className="basic-search-options">
+            <br />
             <Togglable buttonLabel="Search with only part of the word" ref={cypherFormRef}>
               <SubstringForm searchSubstring={searchSubstring} />
             </Togglable>
@@ -117,6 +127,10 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
             <br />
             <Togglable buttonLabel="Find relationships between person and outlet" ref={cypherFormRef}>
               <PersonOutletForm searchPersonOutlet={searchPersonOutlet} />
+            </Togglable>
+            <br />
+            <Togglable buttonLabel="Find relationships between outlet and legal owner" ref={cypherFormRef}>
+              <OutletLegalOwnerForm searchOutletLegal_owner={searchOutletLegal_owner} />
             </Togglable>
             <br />
           </div>

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import Add2Node from "./Add2Node";
+import { useState } from "react";
 import AddEdge from "./AddEdge";
 import AddNode from "./AddNode";
 
@@ -7,6 +6,10 @@ const SearchForm = () => {
   const [showAddNode, setShowAddNode] = useState(false);
   const [showAddEdge, setShowAddEdge] = useState(false);
   const [showAdd2Node, setShowAdd2Node] = useState(false);
+  const [showButton, setShowButton] = useState(false);
+  const [showEdgeButton, setShowEdgeButton] = useState(true);
+  const [showAddNodeButton, setShowAddNodeButton] = useState(true);
+  
 
   const [node, setNode] = useState('');
   const [property, setProperty] = useState('');
@@ -25,15 +28,20 @@ const SearchForm = () => {
     setProperty(property);
     setChar(char);
     setPropertyValue(propertyValue);
+    setShowEdgeButton(false);
+    setShowButton(true);
+    
   }
 
   const addEdge = (edge) => {
     setShowAddEdge(false);
     console.log('edge value', edge);
     setEdge(edge);
+    setShowAddNodeButton(false);
+    setShowEdgeButton(true);
   }
 
-  const add2node = (node, property, char, propertyValue) => {
+  const add2Node = (node, property, char, propertyValue) => {
     setShowAdd2Node(false);
     console.log('node add2node', node);
     setNode2(node);
@@ -50,9 +58,16 @@ const SearchForm = () => {
     setPropertyValue('');
     setEdge('');
     setNode2('');
+    setChar2('');
+    setProperty2('');
+    setPropertyValue2('');
     setShowAddNode(false);
     setShowAddEdge(false);
     setShowAdd2Node(false);
+    setShowButton(false);
+    setShowEdgeButton(true);
+    setShowAddNodeButton(true);
+    
   }
 
   return (
@@ -69,9 +84,9 @@ const SearchForm = () => {
         {node2} {property2} {char2} {propertyValue2}
       </div>
       <br />
-      <button onClick={(e) => setShowAddNode(!showAddNode)}>Add node</button>
-      <button onClick={(e) => setShowAddEdge(!showAddEdge)}>Add edge</button>
-      <button onClick={(e) => setShowAdd2Node(!showAdd2Node)}>Add second node</button>
+      <button disabled={showButton} onClick={(e) => setShowAddNode(!showAddNode)}>Add node</button>
+      <button disabled={showEdgeButton} onClick={(e) => setShowAddEdge(!showAddEdge)}>Add edge</button>
+      <button disabled={showAddNodeButton} onClick={(e) => setShowAdd2Node(!showAdd2Node)}>Add second node</button>
       <br />
       {showAddNode &&
         <AddNode addNode={addNode} />
@@ -80,7 +95,7 @@ const SearchForm = () => {
         <AddEdge addEdge={addEdge} />
       }
       {showAdd2Node &&
-        <Add2Node add2node={add2node} />}
+        <AddNode addNode={add2Node} />}
       <br />
       <button onClick={handleClearAll}>Clear all</button>
     </div>

@@ -12,12 +12,12 @@ const AddNode = ({ addNode }) => {
   ];
 
   const CountryPropertyList = [{ value: "Name", label: "Country name" }];
-
   const PersonPropertyList = [{ value: "Name", label: "Name" }]
   const OutletPropertyList = [{ value: "Name", label: "Name" }]
   const Legal_ownerPropertyList = [{ value: "Name", label: "Name" }]
 
-  const chars = [{ value: "=", label: "=" }, { value: "<", label: "<" }, { value: ">", label: ">" }]
+  const chars = [{ value: "=", label: "=" }]
+  //, { value: "<", label: "<" }, { value: ">", label: ">" } <- extras to chars array for future
 
   const [isClearable, setIsClearable] = useState(true);
 

@@ -31,27 +31,29 @@ const VisualGraph = (props) => {
       labels: {
         Persons: {
           caption: "Name",
-          group: "community",
+          group: "community"
         },
         Outlets: {
           caption: "Name",
-          group: "community",
+          group: "community"
         },
         Legal_owners: {
           caption: "Name",
-          group: "community",
+          group: "community"
         },
         Country: {
           caption: "Name",
-          group: "community",
+          group: "community"
         }
       },
       relationships: {
         OWNS: {
+          thickness: "amount_of_shares",
           caption: true,
           
         },
         FROM: {
+          thickness: "weight",
           caption: true
         }
       },
