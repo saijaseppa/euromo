@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 
 
 const AddNode = ({ addNode }) => {
+
   const nodeTypes = [
-    { value: "Person", label: "Person owner" },
-    { value: "Outlet", label: "Outlet" },
-    { value: "Legal_owner", label: "Legal owner" },
+    { value: "Persons", label: "Person owner" },
+    { value: "Outlets", label: "Outlet" },
+    { value: "Legal_owners", label: "Legal owner" },
     { value: "Country", label: "Country" },
     { value: "any node", label: "*" }
   ];
@@ -37,23 +38,24 @@ const AddNode = ({ addNode }) => {
     if (selectedNode !== null) {
       if (selectedNode.value === "Country") {
         setSelectedPropertyList(CountryPropertyList);
-        setChooseProperties(true);
+        //setChooseProperties(true);
       }
-      if (selectedNode.value === "Person") {
+      if (selectedNode.value === "Persons") {
         setSelectedPropertyList(PersonPropertyList);
-        setChooseProperties(true);
+        //setChooseProperties(true);
       }
-      if (selectedNode.value === "Legal_owner") {
+      if (selectedNode.value === "Legal_owners") {
         setSelectedPropertyList(Legal_ownerPropertyList);
-        setChooseProperties(true);
+        //setChooseProperties(true);
       }
-      if (selectedNode.value === "Outlet") {
+      if (selectedNode.value === "Outlets") {
         setSelectedPropertyList(OutletPropertyList);
-        setChooseProperties(true);
+        //setChooseProperties(true);
       }
       if (selectedNode.value === "any node") {
         setReadySubmit(true);
       }
+
     }
   }, [selectedNode]);
 
@@ -92,6 +94,15 @@ const AddNode = ({ addNode }) => {
             onChange={setSelectedNode} />
         </label>
 
+        {selectedNode && !chooseProperties && selectedNode.value!=='any node' &&
+          <div>
+            <p>Select</p>
+            <button onClick={(e) => setChooseProperties(true)}>Add property to node</button>
+            <p>or</p>
+            <button onClick={(e) => setReadySubmit(true)}>Node ready</button>
+          </div>
+        }
+        <br />
         {chooseProperties &&
           <label>
             Choose property
@@ -130,7 +141,3 @@ const AddNode = ({ addNode }) => {
 }
 
 export default AddNode;
-
-/*
-
-      */

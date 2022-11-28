@@ -6,10 +6,10 @@ import OutletForm from "./Basic-search/OutletForm";
 import PersonForm from "./Basic-search/PersonForm";
 import SubstringForm from "./Basic-search/SubstringForm";
 import SearchForm from "./Advanced-search/SearchForm";
-import Legal_ownerForm from "./Basic-search/Legal_ownerForm";
+import Legal_ownerForm from "./Basic-search/LegalOwnerForm";
 import OutletLegalOwnerForm from "./Basic-search/OuletLegalOwnerForm";
 
-const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypherForOutlet, formCypherForSubstring, formCypherForPerson, formCypherForLegal_owner, formCypherForOutletLegal_owner }) => {
+const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypherForOutlet, formCypherForSubstring, formCypherForPerson, formCypherForLegal_owner, formCypherForOutletLegal_owner, makeVisualGraphWithAdvancedCypher }) => {
 
   const cypherFormRef = useRef();
 
@@ -84,6 +84,10 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
     cypherFormRef.current.toggleVisibility();
   }
 
+  const advancedCypher = (cypher) => {
+    makeVisualGraphWithAdvancedCypher(cypher);
+  }
+
 
   /* Function to capitalize the first letter of the word,
      needed in the names of the countries, persons and outlets. */
@@ -104,7 +108,8 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
           <br />
           <br />
           <div className="basic-search-options">
-            <br />
+            <p>Basic search with pre-given options</p>
+            
             <Togglable buttonLabel="Search with only part of the word" ref={cypherFormRef}>
               <SubstringForm searchSubstring={searchSubstring} />
             </Togglable>
@@ -140,7 +145,7 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
         <div>
           <br />
           <br />
-          <SearchForm />
+          <SearchForm advancedCypher={advancedCypher}/>
         </div>
       ) : null}
     </div>

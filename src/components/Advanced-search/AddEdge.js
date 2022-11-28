@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 const AddEdge = ({ addEdge }) => {
 
   const edges = [
-    {value: "FROM", label: "FROM"}, {value: "OWNS", label: "OWNS"}
+    {value: "FROM", label: "FROM"},
+    {value: "OWNS", label: "OWNS"}
   ];
   const [isClearable, setIsClearable] = useState(true);
   const [chooseEdge, setChooseEdge] = useState(false);

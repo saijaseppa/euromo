@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { VisualGraph, ResponsiveNeoGraph } from "./components/VisualGraph";
 import Form from "./components/Form"
 import Logo from "./components/Logo";
@@ -83,6 +83,11 @@ const Start = ({ uri, user, password }) => {
     setSearchDone(true);
   }
 
+  const makeVisualGraphWithAdvancedCypher = (cypher) => {
+    setCypher(cypher);
+    setSearchDone(true);
+  }
+
   const notification = (vis) => {
     console.log('sended vis:', vis);
   }
@@ -109,6 +114,7 @@ const Start = ({ uri, user, password }) => {
           formCypherForPerson={formCypherForPerson}
           formCypherForLegal_owner={formCypherForLegal_owner}
           formCypherForOutletLegal_owner={formCypherForOutletLegal_owner}
+          makeVisualGraphWithAdvancedCypher={makeVisualGraphWithAdvancedCypher}
         />
         <VisualGraph className="right-panel"
           containerId={"id1"}
