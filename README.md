@@ -2,6 +2,8 @@
 
 Project is pulling data from neo4j. 
 
+![neovisexample](https://user-images.githubusercontent.com/78361679/205662240-16a1aca7-65db-4688-9992-218666c0006b.png)
+
 
 ## To get the project work
 
