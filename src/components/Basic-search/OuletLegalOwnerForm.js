@@ -8,6 +8,7 @@ const OutletLegalOwnerForm = ({ searchOutletLegal_owner }) => {
   const handleSubmit = (e, legal_owner, outlet) => {
     e.preventDefault();
     searchOutletLegal_owner(legal_owner, outlet);
+    // setting initial states to variables
     setSelectedLegal_owner('');
     setSelectedOutlet('');
   }

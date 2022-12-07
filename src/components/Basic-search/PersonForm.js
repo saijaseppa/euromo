@@ -9,6 +9,7 @@ const PersonForm = ({ searchPerson }) => {
   const handleSubmit = (e, name) => {
     e.preventDefault();
     searchPerson(name, searchType);
+    // setting initial states to variables
     setSelectedName('');
     setSearchType("single")
   }

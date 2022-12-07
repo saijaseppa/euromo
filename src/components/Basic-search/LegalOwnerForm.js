@@ -9,11 +9,12 @@ const Legal_ownerForm = ({ searchLegal_owner }) => {
   const handleSubmit = (e, legal_owner) => {
     e.preventDefault();
     searchLegal_owner(legal_owner, searchType);
+    // setting initial states to variables
     setSelectedLegal_owner('');
     setSearchType("single")
   }
 
-  const handleSingleChange = (e) => {
+  const handleSingleChange = () => {
     setSearchType("single");
   }
   const handleImmediateChange = () => {

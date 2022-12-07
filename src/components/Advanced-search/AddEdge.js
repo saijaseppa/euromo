@@ -2,16 +2,17 @@ import Select from 'react-select';
 import { useEffect, useState } from "react";
 
 const AddEdge = ({ addEdge }) => {
-
+  //Array of edge types 
   const edges = [
     {value: "FROM", label: "FROM"},
     {value: "OWNS", label: "OWNS"}
   ];
-  const [isClearable, setIsClearable] = useState(true);
-  const [chooseEdge, setChooseEdge] = useState(false);
 
+  const [chooseEdge, setChooseEdge] = useState(false);
   const [selectedEdge, setSelectedEdge] = useState(null);
 
+  //When edge is selected, user can submit form 
+  //and continue to add other node. 
   useEffect(() => {
     if (selectedEdge) {
       setChooseEdge(true);
@@ -20,9 +21,7 @@ const AddEdge = ({ addEdge }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('add edge', selectedEdge);
     addEdge(selectedEdge.value);
-
   }
 
   return (
@@ -34,7 +33,7 @@ const AddEdge = ({ addEdge }) => {
           <Select
             className="select-edge"
             classNamePrefix="select"
-            isClearable={isClearable}
+            isClearable={true}
             name="nodeTypes"
             options={edges}
             onChange={setSelectedEdge} />

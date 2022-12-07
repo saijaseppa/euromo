@@ -8,6 +8,7 @@ const PersonOutletForm = ({ searchPersonOutlet }) => {
   const handleSubmit = (e, name, outlet) => {
     e.preventDefault();
     searchPersonOutlet(name, outlet);
+    // setting initial states to variables
     setSelectedName('');
     setSelectedOutlet('');
   }

@@ -10,7 +10,7 @@ const NotFound = () => {
       <br />
       <h2>Nothing here</h2>
       <p>
-        <Link to="/neo4jvisualization">Click here to get Neo4j visualization</Link>
+        <Link to="/">Click here to get Neo4j visualization</Link>
       </p>
     </div>
   )

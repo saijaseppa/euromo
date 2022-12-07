@@ -1,17 +1,15 @@
-//tässä epäloogisuutta boolen arvoissa, nimiin hide vai show?
-
 import { useState } from "react";
 import AddEdge from "./AddEdge";
 import AddNode from "./AddNode";
 import queryMaker from "./queryMaker";
 
 const SearchForm = ({ advancedCypher }) => {
-  const [showAddNode, setShowAddNode] = useState(false);
+  const [showAddNodeType, setShowAddNodeType] = useState(false);
   const [showAddEdge, setShowAddEdge] = useState(false);
   const [showAdd2Node, setShowAdd2Node] = useState(false);
-  const [showButton, setShowButton] = useState(false);
-  const [showEdgeButton, setShowEdgeButton] = useState(true);
-  const [showAddNodeButton, setShowAddNodeButton] = useState(true);
+  const [hideNodeButton, setHideNodeButton] = useState(false);
+  const [hideEdgeButton, setHideEdgeButton] = useState(true);
+  const [hideAddNode2Button, setHideAddNode2Button] = useState(true);
 
   const [node, setNode] = useState('');
   const [property, setProperty] = useState('');
@@ -24,14 +22,13 @@ const SearchForm = ({ advancedCypher }) => {
   const [propertyValue2, setPropertyValue2] = useState('');
 
   const addNode = (node, property, char, propertyValue) => {
-    console.log('addNodessa noden tiedot: ', node, property, char, propertyValue);
-    setShowAddNode(false);
+    setShowAddNodeType(false);
     setNode(node);
     setProperty(property);
     setChar(char);
     setPropertyValue(propertyValue);
-    setShowEdgeButton(false);
-    setShowButton(true);
+    setHideEdgeButton(false);
+    setHideNodeButton(true);
     //Calling the method to make cypher from node info.
     queryMaker.queryNode(node, property, char, propertyValue);
   }
@@ -40,8 +37,8 @@ const SearchForm = ({ advancedCypher }) => {
     setShowAddEdge(false);
     console.log('edge value', edge);
     setEdge(edge);
-    setShowAddNodeButton(false);
-    setShowEdgeButton(true);
+    setHideAddNode2Button(false);
+    setHideEdgeButton(true);
 
     //Calling the method to make cypher from edge info.
     queryMaker.queryEdge(edge);
@@ -49,7 +46,6 @@ const SearchForm = ({ advancedCypher }) => {
 
   const add2Node = (node, property, char, propertyValue) => {
     setShowAdd2Node(false);
-    console.log('node add2node', node);
     setNode2(node);
     setProperty2(property);
     setChar2(char);
@@ -60,7 +56,7 @@ const SearchForm = ({ advancedCypher }) => {
   }
 
   const makeSearch = (e) => {
-    //e.preventDefault();
+    e.preventDefault();
     //Calling method to get whole query 
     const formedCypher = queryMaker.getQuery();
     console.log('formed cypher:', formedCypher);
@@ -83,12 +79,12 @@ const SearchForm = ({ advancedCypher }) => {
     setChar2('');
     setProperty2('');
     setPropertyValue2('');
-    setShowAddNode(false);
+    setShowAddNodeType(false);
     setShowAddEdge(false);
     setShowAdd2Node(false);
-    setShowButton(false);
-    setShowEdgeButton(true);
-    setShowAddNodeButton(true);
+    setHideNodeButton(false);
+    setHideEdgeButton(true);
+    setHideAddNode2Button(true);
   }
 
   return (
@@ -105,11 +101,11 @@ const SearchForm = ({ advancedCypher }) => {
         {node2} {property2} {char2} {propertyValue2}
       </div>
       <br />
-      <button disabled={showButton} onClick={(e) => setShowAddNode(!showAddNode)}>Add node</button>
-      <button disabled={showEdgeButton} onClick={(e) => setShowAddEdge(!showAddEdge)}>Add edge</button>
-      <button disabled={showAddNodeButton} onClick={(e) => setShowAdd2Node(!showAdd2Node)}>Add second node</button>
+      <button disabled={hideNodeButton} onClick={() => setShowAddNodeType(!showAddNodeType)}>Add node</button>
+      <button disabled={hideEdgeButton} onClick={() => setShowAddEdge(!showAddEdge)}>Add edge</button>
+      <button disabled={hideAddNode2Button} onClick={() => setShowAdd2Node(!showAdd2Node)}>Add second node</button>
       <br />
-      {showAddNode &&
+      {showAddNodeType &&
         <AddNode addNode={addNode} />
       }
       {showAddEdge &&
@@ -128,51 +124,3 @@ const SearchForm = ({ advancedCypher }) => {
 }
 
 export default SearchForm;
-
-/*
-
-<QueryMaker queryNode={queryNode} />
-
-
-<select value={selectedNode} onChange={(e) => setSelectedNode(e.target.value)}>
-          {nodeTypes.map(n => 
-            <option key={n} value={n}>{n}</option>
-          )}
-          </select>
-          */
-
-/**/
-
-
-/*
-      <label>
-Add node
-<br />
-<Select
-className="select-node"
-classNamePrefix="select"
-isClearable={isClearable}
-name="nodeTypes"
-options={nodeTypes}
-onChange={setSelectedNode} />
-</label>
-
-{chooseProperties &&
-<label>
-Choose properties
-<br />
-<Select
-  className="select-property"
-  //classNamePrefix="select"
-  isClearable={isClearable}
-  name="properties"
-  options={selectedPropertyList}
-  onChange={setSelectedProperty} />
-</label>}
-
-{givePropertyName &&
-<input type="text" placeholder="give name" />
-}
-<br />
-<br />
-<button onClick={handleClearAll}>Clear all</button>*/

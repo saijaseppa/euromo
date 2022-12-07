@@ -9,6 +9,7 @@ const OutletForm = ({ searchOutlet }) => {
   const handleSubmit = (e, outlet) => {
     e.preventDefault();
     searchOutlet(outlet, searchType);
+    // setting initial states to variables
     setSelectedOutlet('');
     setSearchType("single")
   }

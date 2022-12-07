@@ -1,17 +1,6 @@
-import { useState } from "react";
-
-//const QueryMaker = () => {
-
-/*const [query, setQuery] = useState('');
-const [returns, setReturns] = useState('');
-const [baseQuery, setBaseQuery] = useState(`MATCH ${query} return ${returns}`);
-const [n, setN] = useState(-1);
-const [nodeLabel, setNodeLabel] = useState('');
-const [nodeLabelProperty, setNodeLabelProperty] = useState('');
-const [p_name, setP_name] = useState('');
-const [propertyNameValue, setPropertyNameValue] = useState('');
-const [property, setProperty] = useState('');*/
-
+/* queryMaker has methods to form cypher queries based
+ * on the node and edge information the user has given. 
+ */
 
 let returns = 'return';
 let baseQuery = 'MATCH ';
@@ -20,7 +9,7 @@ let n = -1;
 const queryNode = (node, propertyName, char, propertyValue) => {
 
   let nodeLabel = ''; //-> (x:nodeLabel) ja returniin x
-  //jos annettu myös propertyjä, oletetaan että char on =
+  //at this point we assume the property char is =
   let nodeLabelProperty = ''; //-> (x:nodeLabel{property})
   let p_Name = ''; //->  propert
   let propertyNameValue = ''; //-> propertyValue
@@ -82,7 +71,9 @@ const getQuery = () => {
 
   return readyQuery;
 }
-/*  Method for making variables in lowerCase.
+/*  Method for making variables in lowerCase. These are needed when
+ *  forming the cypher clause. Method is making an array of alpabets
+ *  and giving the next one when called. 
  */
 const formVariable = () => {
   const alphabet = Array.from(Array(26)).map((e, i) => i + 65);
@@ -91,8 +82,4 @@ const formVariable = () => {
   return alphabetArray[n];
 }
 
-//}
-
 export default { queryNode, queryEdge, getQuery };
-
-//QueryMaker

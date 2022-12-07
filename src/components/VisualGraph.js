@@ -1,27 +1,28 @@
 import { useEffect, useRef } from "react";
-//import useResizeAware from "react-resize-aware";
-//import PropTypes from "prop-types";
 import Neovis from "neovis.js/dist/neovis.js";
 
 const VisualGraph = (props) => {
   const {
-    width,
-    height,
     containerId,
     backgroundColor,
     neo4jUri,
     neo4jUser,
     neo4jPassword,
-    cypher,
-    notification
+    cypher
   } = props;
 
   const visRef = useRef();
 
+  /*  The hook useEffect is watching variable cypher and 
+   *  the visualization is drawn again if cypher is changed. 
+   *  Neovis is the tool to draw visualization and needs 
+   *  spesific configurations. 
+   */
+
   useEffect(() => {
     const config = {
-      //if connecting via localhost, hide these two rows:
-      // encrypted and trust
+      //if connecting via localhost, 
+      //hide these two rows: encrypted and trust
       encrypted:"ENCRYPTION_ON", 
       trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES", 
       container_id: visRef.current.id,
@@ -60,12 +61,10 @@ const VisualGraph = (props) => {
       arrows: true,
       initial_cypher: cypher
     };
-    const vis = new Neovis(config);
 
-    //sending info of success of vis rendering
-    notification(vis);
+    const vis = new Neovis(config);
     vis.render();
-    
+
   }, [cypher]);
 
   return (
@@ -80,32 +79,4 @@ const VisualGraph = (props) => {
   );
 };
 
-/*
-
-width: `${width}px`,
-        height: `${height}px`,
-        VisualGraph.defaultProps = {
-  width: 600,
-  height: 600,
-  backgroundColor: "#d3d3d3",
-};*/
-/*
-const ResponsiveNeoGraph = (props) => {
-  const [resizeListener, sizes] = useResizeAware();
-
-  const side = Math.max(sizes.width, sizes.height) / 2;
-  const neoGraphProps = { ...props, width: side, height: side };
-  return (
-    <div style={{ position: "relative" }}>
-      {resizeListener}
-      <VisualGraph {...neoGraphProps} />
-    </div>
-  );
-};
-
-ResponsiveNeoGraph.defaultProps = {
-  backgroundColor: "#d3d3d3",
-};*/
-
-
-export { VisualGraph };
+export default VisualGraph;

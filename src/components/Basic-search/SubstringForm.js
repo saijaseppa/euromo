@@ -7,6 +7,7 @@ const SubstringForm = ({ searchSubstring }) => {
   const handleSubmit = (e, word) => {
     e.preventDefault();
     searchSubstring(word);
+    // setting initial state to variable
     setSelectedWord('');
   }
 

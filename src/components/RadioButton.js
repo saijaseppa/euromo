@@ -1,4 +1,9 @@
+/*  Reusable Radio button component for forms. 
+ */
+
 const RadioButton = ({ label, value, onChange }) => {
+
+
   return (
     <div className="radiobutton">
       <label>
@@ -8,4 +13,5 @@ const RadioButton = ({ label, value, onChange }) => {
     </div>
   )
 }
+
 export default RadioButton;

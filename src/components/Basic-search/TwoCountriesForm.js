@@ -8,6 +8,7 @@ const TwoCountriesForm = ({ searchTwoCountries }) => {
   const handleSubmit = (e, selectedCountry, selectedSecCountry) => {
     e.preventDefault();
     searchTwoCountries(selectedCountry, selectedSecCountry);
+    // setting initial states to variables
     setSelectedCountry('');
     setSelectedSecCountry('');
   }
