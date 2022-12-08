@@ -110,7 +110,7 @@ const Start = ({ uri, user, password }) => {
           formCypherForOutlet={formCypherForOutlet}
           formCypherForSubstring={formCypherForSubstring}
           formCypherForPerson={formCypherForPerson}
-          formCypherForLegal_owner={formCypherForLegalOwner}
+          formCypherForLegalOwner={formCypherForLegalOwner}
           formCypherForOutletLegal_owner={formCypherForOutletLegalOwner}
           makeVisualGraphWithAdvancedCypher={makeVisualGraphWithAdvancedCypher}
         />

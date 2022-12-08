@@ -1,14 +1,14 @@
 import { useState } from "react";
 import RadioButton from "../RadioButton";
 
-const Legal_ownerForm = ({ searchLegal_owner }) => {
+const Legal_ownerForm = ({ searchLegalOwner }) => {
 
   const [selectedLegal_owner, setSelectedLegal_owner] = useState('');
   const [searchType, setSearchType] = useState("single");
 
   const handleSubmit = (e, legal_owner) => {
     e.preventDefault();
-    searchLegal_owner(legal_owner, searchType);
+    searchLegalOwner(legal_owner, searchType);
     // setting initial states to variables
     setSelectedLegal_owner('');
     setSearchType("single")
