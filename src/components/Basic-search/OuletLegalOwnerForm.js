@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const OutletLegalOwnerForm = ({ searchOutletLegal_owner }) => {
+const OutletLegalOwnerForm = ({ searchOutletLegalOwner }) => {
 
   const [selectedLegal_owner, setSelectedLegal_owner] = useState('');
   const [selectedOutlet, setSelectedOutlet] = useState('');
 
   const handleSubmit = (e, legal_owner, outlet) => {
     e.preventDefault();
-    searchOutletLegal_owner(legal_owner, outlet);
+    searchOutletLegalOwner(legal_owner, outlet);
     // setting initial states to variables
     setSelectedLegal_owner('');
     setSelectedOutlet('');
@@ -17,7 +17,7 @@ const OutletLegalOwnerForm = ({ searchOutletLegal_owner }) => {
     <form onSubmit={(e) => handleSubmit(e, selectedLegal_owner, selectedOutlet)}>
       <h4>Find relationships between legal owner and outlet</h4>
       <label>
-        Last name of the legal owner:
+        Name of the legal owner:
         <br />
         <input
           type="text"

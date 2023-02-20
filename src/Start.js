@@ -111,7 +111,7 @@ const Start = ({ uri, user, password }) => {
           formCypherForSubstring={formCypherForSubstring}
           formCypherForPerson={formCypherForPerson}
           formCypherForLegalOwner={formCypherForLegalOwner}
-          formCypherForOutletLegal_owner={formCypherForOutletLegalOwner}
+          formCypherForOutletLegalOwner={formCypherForOutletLegalOwner}
           makeVisualGraphWithAdvancedCypher={makeVisualGraphWithAdvancedCypher}
         />
         { //If cypher is formed (is not null), VisualGraph is shown
