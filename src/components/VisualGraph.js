@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import Neovis from "neovis.js/dist/neovis.js";
+//import Neovis from "neovis.js/dist/neovis.js";
+import Neovis from 'neovis.js';
 
 const VisualGraph = (props) => {
   const {
