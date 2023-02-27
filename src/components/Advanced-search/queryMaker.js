@@ -44,6 +44,13 @@ const queryEdge = (edge) => {
   //Forming the variable for edge label.
   let variable = formVariable();
   
+  //console.log('queryMakerissa saatu edge', edge);
+  
+  let formedEdge = `-[${variable}:${edge}]->`;
+  console.log('formed Edge', formedEdge);
+
+  baseQuery = baseQuery + formedEdge;
+  
   // mimmosia edgejä vois tulla? nuolien suuntaa? eka vois olettaa nuolen oikealle. 
   /*
   neljä erilaista: 
