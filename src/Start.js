@@ -23,14 +23,14 @@ const Start = ({ uri, user, password }) => {
 
   // Method to make cypher for person name and outlet
   const formCypherForPersonOutlet = ({ name, outlet }) => {
-    setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*..6]-(y:Legal_owners) <-[j:OWNS*..6]- (z:Persons{Name:'${name}'}) return x,y,z,i,j`);
+    setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*]-(y:Legal_owners) <-[j:OWNS*]- (z:Persons{Name:'${name}'}) return x,y,z,i,j`);
     setSearchPhrase(`${name} and ${outlet}`);
     setSearchDone(true);
   }
 
   // Method to make cypher for two outlet name and owner
   const formCypherForOutletLegalOwner = ({ outlet, legal_owner }) => {
-    setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*..6]- (y:Legal_owners) <-[j:OWNS*..6]- (z:Legal_owners{Name:'${legal_owner}'}) return x,y,z,i,j`);
+    setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*]- (y:Legal_owners) <-[j:OWNS*]- (z:Legal_owners{Name:'${legal_owner}'}) return x,y,z,i,j`);
     setSearchPhrase(`${legal_owner} and ${outlet}`);
     setSearchDone(true);
   }
@@ -41,10 +41,10 @@ const Start = ({ uri, user, password }) => {
       setCypher(`MATCH (n{Name:"${outlet}"}) return n`);
     }
     else if (type === "immediate") {
-      setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) -[i:OWNS|FROM]- (y) return x,i,y`);
+      setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) -[i:OWNS]- (y) return x,i,y`);
     }
     else if (type === "all") {
-      setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*..6]-(y:Legal_owners) <-[j:OWNS*..6]- (z:Persons) return x,y,z,i,j`)
+      setCypher(`MATCH (x:Outlets{Name:'${outlet}'}) <–[i:OWNS*]-(y:Legal_owners) <-[j:OWNS*]- (z:Persons) return x,y,z,i,j`)
     }
     setSearchPhrase(`${outlet}`);
     setSearchDone(true);
@@ -56,10 +56,10 @@ const Start = ({ uri, user, password }) => {
       setCypher(`MATCH (n{Name:"${name}"}) return n`);
     }
     else if (type === "immediate") {
-      setCypher(`MATCH (x:Persons{Name:'${name}'})-[i:OWNS|FROM]-> (y) return x,i,y`);
+      setCypher(`MATCH (x:Persons{Name:'${name}'})-[i:OWNS]-> (y) return x,i,y`);
     }
     else if (type === "all") {
-      setCypher(`MATCH (x:Persons{Name:'${name}'})-[i:OWNS*]->(y:Legal_owners) MATCH (y)-[j:OWNS|FROM*]->(z) return x,y,z,i,j`);
+      setCypher(`MATCH (x:Persons{Name:'${name}'})-[i:OWNS*]->(y:Legal_owners) MATCH (y)-[j:OWNS*]->(z) return x,y,z,i,j`);
     }
     setSearchPhrase(`${name}`);
     setSearchDone(true);
@@ -74,7 +74,7 @@ const Start = ({ uri, user, password }) => {
       setCypher(`MATCH (x:Legal_owners{Name:'${owner}'}) -[i:OWNS|FROM]- (y) return x,i,y`);
     }
     else if (type === "all") {
-      setCypher(`MATCH (x:Legal_owners{Name:'${owner}'})-[i:OWNS*..6]->(y) MATCH (y)-[j:OWNS|FROM*]->(z) return x,y,z,i,j`);
+      setCypher(`MATCH (x:Legal_owners{Name:'${owner}'})-[i:OWNS*]->(y) MATCH (y)-[j:OWNS|FROM*]->(z) return x,y,z,i,j`);
     }
     setSearchPhrase(`${owner}`);
     setSearchDone(true);
@@ -90,6 +90,7 @@ const Start = ({ uri, user, password }) => {
   // Method to pass the cypher on for advanced search form
   const makeVisualGraphWithAdvancedCypher = (cypher) => {
     setCypher(cypher);
+    setSearchPhrase(`${cypher}`);
     setSearchDone(true);
   }
 

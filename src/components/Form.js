@@ -124,26 +124,32 @@ const Form = ({ formCypherForTwoCountries, formCypherForPersonOutlet, formCypher
               <SubstringForm searchSubstring={searchSubstring} />
             </Togglable>
             <br />
+            <br/>
             <Togglable buttonLabel="Find by the outlet" ref={cypherFormRef}>
               <OutletForm searchOutlet={searchOutlet} />
             </Togglable>
             <br />
+            <br/>
             <Togglable buttonLabel="Find by the person" ref={cypherFormRef}>
               <PersonForm searchPerson={searchPerson} />
             </Togglable>
             <br />
+            <br/>
             <Togglable buttonLabel="Find by the legal owner" ref={cypherFormRef}>
               <LegalOwnerForm searchLegalOwner={searchLegalOwner} />
             </Togglable>
             <br />
+            <br/>
             <Togglable buttonLabel="Find relationships between two countries" ref={cypherFormRef}>
               <TwoCountriesForm searchTwoCountries={searchTwoCountries} />
             </Togglable>
             <br />
+            <br/>
             <Togglable buttonLabel="Find relationships between person and outlet" ref={cypherFormRef}>
               <PersonOutletForm searchPersonOutlet={searchPersonOutlet} />
             </Togglable>
             <br />
+            <br/>
             <Togglable buttonLabel="Find relationships between outlet and legal owner" ref={cypherFormRef}>
               <OutletLegalOwnerForm searchOutletLegalOwner={searchOutletLegalOwner} />
             </Togglable>

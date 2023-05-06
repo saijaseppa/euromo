@@ -2,18 +2,19 @@
  * on the node and edge information the user has given. 
  */
 
-let returns = 'return';
+let returns = 'RETURN';
 let baseQuery = 'MATCH ';
 let n = -1;
 
+
 const queryNode = (node, propertyName, char, propertyValue) => {
 
-  let nodeLabel = ''; //-> (x:nodeLabel) ja returniin x
+  let nodeLabel = ''; //-> (x:nodeLabel)
   //at this point we assume the property char is =
   let nodeLabelProperty = ''; //-> (x:nodeLabel{property})
-  let p_Name = ''; //->  propert
+  let p_Name = ''; //->  propertyName
   let propertyNameValue = ''; //-> propertyValue
-  let property = ''; // `${p_Name}:'${propertyNameValue}'` 
+  let property = ''; // `${p_Name} ${char} '${propertyNameValue}'` 
 
   //Forming the variable for node label.
   let variable = formVariable();
@@ -40,29 +41,57 @@ const queryNode = (node, propertyName, char, propertyValue) => {
   returns = returns + ` ${variable},`;
 }
 
-const queryEdge = (edge) => {
+const queryEdge = (edge, checkedInv, checkedRel) => {
   //Forming the variable for edge label.
-  let variable = formVariable();
-  
-  //console.log('queryMakerissa saatu edge', edge);
-  
-  let formedEdge = `-[${variable}:${edge}]->`;
+  let variable = formVariable() //+'1';
+  let variable2 = formVariable()
+  let formedEdge = '';
+
+  if (edge === "FROM") {
+    if (checkedInv) {
+      formedEdge = `<-[${variable}:FROM]-`;
+      //Modifying the return part, adding edge variable to return.
+      returns = returns + ` ${variable},`;
+    }
+    else {
+      formedEdge = `-[${variable}:FROM]->`;
+      //Modifying the return part, adding edge variable to return.
+      returns = returns + ` ${variable},`;
+    }
+  }
+
+  if (edge === "OWNS") {
+    if (checkedInv && checkedRel) {
+      formedEdge = `<-[${variable}:OWNS*0..]-(x)<-[${variable2}:OWNS*0..]-`;
+      //Modifying the return part, adding edge variable to return.
+      returns = returns + ` ${variable}, x, ${variable2},`;
+    }
+    else if (checkedInv) {
+      formedEdge = `<-[${variable}:OWNS]-`;
+      //Modifying the return part, adding edge variable to return.
+      returns = returns + ` ${variable},`;
+    }
+    else if (checkedRel) {
+      formedEdge = `-[${variable}:OWNS*0..]->(x)-[${variable2}:OWNS*0..]->`;
+      //Modifying the return part, adding edge variable to return.
+      returns = returns + ` ${variable}, x, ${variable2},`;
+    }
+    else {
+      formedEdge = `-[${variable}:OWNS]->`;
+      //Modifying the return part, adding edge variable to return.
+      returns = returns + ` ${variable},`;
+    }
+  }
   console.log('formed Edge', formedEdge);
 
   baseQuery = baseQuery + formedEdge;
-  
-  // mimmosia edgejä vois tulla? nuolien suuntaa? eka vois olettaa nuolen oikealle. 
-  /*
-  neljä erilaista: 
-   -[x:edge]->
-   <-[x:edge]-
-   -[:edge*..6]->
-   <-[:edge*..6]-
 
-  */
+}
 
-  //Modifying the return part, adding edge variable to return.
-  returns = returns + ` ${variable},`;
+const deleteFormedQuery = () => {
+  returns = 'RETURN';
+  baseQuery = 'MATCH ';
+  n = -1;
 }
 
 const getQuery = () => {
@@ -73,7 +102,7 @@ const getQuery = () => {
   //Connecting query and returns and then returning full query.
   baseQuery = baseQuery + returns;
   const readyQuery = baseQuery;
-  returns = 'return';
+  returns = 'RETURN';
   baseQuery = 'MATCH '
 
   return readyQuery;
@@ -89,4 +118,4 @@ const formVariable = () => {
   return alphabetArray[n];
 }
 
-export default { queryNode, queryEdge, getQuery };
+export default { queryNode, queryEdge, getQuery, deleteFormedQuery };

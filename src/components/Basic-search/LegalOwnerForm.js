@@ -45,7 +45,7 @@ const Legal_ownerForm = ({ searchLegalOwner }) => {
         value={searchType === "immediate"}
         onChange={handleImmediateChange} />
       <RadioButton
-        label="All relationships of the node"
+        label="All relationships from the node"
         value={searchType==="all"}
         onChange={handleAllChange} />
         <br />

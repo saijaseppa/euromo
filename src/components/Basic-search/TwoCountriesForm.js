@@ -36,6 +36,7 @@ const TwoCountriesForm = ({ searchTwoCountries }) => {
       <br />
       <input type="submit" value="Search" />
     </form>
+    
   )
 }
 

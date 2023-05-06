@@ -1,36 +1,77 @@
-## EUROMO
+# EurOMo- application for visual queries in graph database
+This is an application made for master's thesis project. Project is part of the greater EurOMo -project (https://media-ownership.eu/). 
 
-Project is pulling data from neo4j. 
+## Technologies
+- [Node](https://nodejs.org/en/)
+- [React](https://reactjs.org/)
+- [Neo4j](https://neo4j.com/)
+- [Neovis.js](https://github.com/neo4j-contrib/neovis.js?)
 
-![neovisexample](https://user-images.githubusercontent.com/78361679/205662240-16a1aca7-65db-4688-9992-218666c0006b.png)
+## Running it locally
+1. clone this repository. 
+2. `cd euromonew`
+3. add .env file to root of this repository. Check below the content of .env. Choose URI based on which database you use: Neo4j AuraDB or Neo4j Desktop.
+4. To install dependencies run `npm install` .
 
+When all dependencies are installed, to start application, run `npm start`.  
+Application can be used in http://localhost:3000/. 
 
-## To get the project work
+## .env file 
+Please replace the stars (**) with your own info.  
+```PORT=3000  
+  
+Uri with AuraDB:  
+REACT_APP_NEO4J_URI = neo4j://******.databases.neo4j.io    
+Uri with Neo4j desktop:  
+REACT_APP_NEO4J_URI = bolt://localhost:7687    
+  
+REACT_APP_NEO4J_USER = ***   
+REACT_APP_NEO4J_PASSWORD = ***
+```
+## Example image from application 
 
-1. First copy this repo. 
-2. Then "npm install" at the root of the project. 
-3. Create .env file on the root and fill in info of your database. Instructions below.
-4. 'Then "npm start". 
-
-
-## Connection works with AuraDb or Neo4j Desktop
-
-### AuraDB:
-Create .env file, where you put following info
-of your database:
-
-REACT_APP_NEO4J_URI = writehere  
-REACT_APP_NEO4J_USER = writehere  
-REACT_APP_NEO4J_PASSWORD = writehere  
-
-### Neo4j Desktop / localhost
-When using desktop version, put info below 
-to your .env file. Uri is using bolt protocol. 
-Also when using localhost, hide also two rows in file VisualGraph.js (marked there).
-
-REACT_APP_NEO4J_URI = writehere  
-REACT_APP_NEO4J_USER = writehere  
-REACT_APP_NEO4J_PASSWORD = writehere  
-
+![Näyttökuva 2023-05-05 135722](https://user-images.githubusercontent.com/78361679/236645063-c55a4efe-dc9c-4342-b8e2-36d33dc1be0e.png)
 
 
+
+## File hierarchy 
+```
+│   .env                        ## add .env file locally  
+│   .gitignore  
+│   App.js  
+│   index.js  
+│   NotFound.js  
+│   Start.js  
+│   app.css  
+│   package-lock.json  
+│   package.json  
+│   README.md  
+│  
+├───components  
+│   │   Button.js  
+│   │   Form.js  
+│   │   Logo.js  
+│   │   RadioButton.js  
+│   │   Togglable.js  
+│   │   VisualGraph.js  
+│   │  
+│   ├───Advanced-search  
+│   │       AddEdge.js  
+│   │       AddNode.js  
+│   │       queryMaker.js  
+│   │       SearchForm.js  
+│   │  
+│   └───Basic-search  
+│            LegalOwnerForm.js  
+│            OutletLegalOwnerForm.js  
+│            OutletForm.js  
+│            PersonForm.js  
+│            PersonOutletForm.js  
+│            SubstringForm.js  
+│            TwoCountriesForm.js  
+│         
+│         
+├───images  
+        euromoicon.png  
+        euromologo.png  
+```

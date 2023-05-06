@@ -8,7 +8,7 @@ const AddNode = ({ addNode }) => {
     { value: "Outlets", label: "Outlet" },
     { value: "Legal_owners", label: "Legal owner" },
     { value: "Country", label: "Country" },
-    { value: "any node", label: "*" }
+    { value: "any node", label: "*node of any type*" }
   ];
   // Property lists. In future there could be more properties. 
   const CountryPropertyList = [{ value: "Name", label: "Country name" }];
@@ -16,8 +16,11 @@ const AddNode = ({ addNode }) => {
   const OutletPropertyList = [{ value: "Name", label: "Name" }]
   const Legal_ownerPropertyList = [{ value: "Name", label: "Name" }]
 
-  const chars = [{ value: "=", label: "=" }]
-  //, { value: "<", label: "<" }, { value: ">", label: ">" } <- extras to chars array for future
+  const chars = [
+    { value: "=", label: "=" }, 
+    { value: "<", label: "<" }, 
+    { value: ">", label: ">" } 
+  ];
 
   const [selectedNode, setSelectedNode] = useState(null);
   const [selectedProperty, setSelectedProperty] = useState('');
@@ -52,6 +55,18 @@ const AddNode = ({ addNode }) => {
       }
     }
   }, [selectedNode]);
+
+  // This useEffect is helper function, when the only
+  // property in use is "Name" for all nodes. This sets 
+  // property to be "Name = ". 
+  useEffect(() => {
+    if (chooseProperties) {
+      setGivePropertyName(true);
+      setSelectedProperty({ value: "Name", label: "Name" });
+      setSelectedChar({ value: "=", label: "=" });
+    }
+    
+  }, [chooseProperties])
 
   //When property is selected, option to select char opens.
   useEffect(() => {
@@ -98,6 +113,14 @@ const AddNode = ({ addNode }) => {
         <br />
         {chooseProperties &&
           <label>
+            Chosen property is "Name"
+            <br/>
+          </label>
+        }
+        {chooseProperties &&
+        // These are hided, because only property is for now "Name"
+        // If there's more properties, this select can be shown. 
+          /*<label>
             Choose property
             <br />
             <Select
@@ -106,8 +129,15 @@ const AddNode = ({ addNode }) => {
               name="properties"
               options={selectedPropertyList}
               onChange={setSelectedProperty} />
+      </label>*/
+      <label>
+            Give property value
+            <input type="text" required placeholder="property value.." value={givenInput} onChange={(e) => setGivenInput(e.target.value)} />
           </label>}
-        {giveChar &&
+        {
+        // These are hided, because only char is for now "="
+        // If there's more cahrs, this select can be shown. 
+        /*giveChar &&
           <label>
             Choose
             <br />
@@ -117,12 +147,13 @@ const AddNode = ({ addNode }) => {
               name="chars"
               options={chars}
               onChange={setSelectedChar} />
-          </label>}
-        {givePropertyName &&
+        </label>*/
+        }
+        {/*givePropertyName &&
           <label>
             Give property value
             <input type="text" required placeholder="property value.." value={givenInput} onChange={(e) => setGivenInput(e.target.value)} />
-          </label>}
+      </label>*/}
         <br />
         {readySubmit &&
           <input type="submit" value="add" />

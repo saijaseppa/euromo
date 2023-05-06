@@ -29,13 +29,13 @@ const PersonForm = ({ searchPerson }) => {
       <h4>Find by a person</h4>
       <label>
         Last name of the person:
-        <br/>
+        <br />
         <input
           type="text"
           value={selectedName}
           onChange={(e) => setSelectedName(e.target.value)} />
       </label>
-      <br/>
+      <br />
       <RadioButton
         label="Single node"
         value={searchType === "single"}
@@ -45,10 +45,10 @@ const PersonForm = ({ searchPerson }) => {
         value={searchType === "immediate"}
         onChange={handleImmediateChange} />
       <RadioButton
-        label="All relationships of the node"
-        value={searchType==="all"}
+        label="All relationships from the node"
+        value={searchType === "all"}
         onChange={handleAllChange} />
-        <br />
+      <br />
       <input type="submit" value="Search" />
     </form>
   )

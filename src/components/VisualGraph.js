@@ -24,8 +24,8 @@ const VisualGraph = (props) => {
     const config = {
       //if connecting via localhost, 
       //hide these two rows: encrypted and trust
-      //encrypted:"ENCRYPTION_ON", 
-      //trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES", 
+      encrypted:"ENCRYPTION_ON", 
+      trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES", 
       container_id: visRef.current.id,
       server_url: neo4jUri,
       server_user: neo4jUser,
