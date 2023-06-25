@@ -28,12 +28,13 @@ REACT_APP_NEO4J_URI = bolt://localhost:7687
 REACT_APP_NEO4J_USER = ***   
 REACT_APP_NEO4J_PASSWORD = ***
 ```
+
+If using localhost via Neo4j Desktop, you have to hide two rows (marked there) in component VisualGraph.
 ## Example image from application 
 
 ![Näyttökuva 2023-05-05 135722](https://user-images.githubusercontent.com/78361679/236645063-c55a4efe-dc9c-4342-b8e2-36d33dc1be0e.png)
 
 ## Data flow in application
-
 
 
 ## File hierarchy 
