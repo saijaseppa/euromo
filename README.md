@@ -35,6 +35,7 @@ If using localhost via Neo4j Desktop, you have to hide two rows (marked there) i
 ![Näyttökuva 2023-05-05 135722](https://user-images.githubusercontent.com/78361679/236645063-c55a4efe-dc9c-4342-b8e2-36d33dc1be0e.png)
 
 ## Data flow in application
+![dataflow drawio](https://github.com/saijaseppa/euromo/assets/78361679/49d54ccb-6602-4674-8db6-b2b4a9c2863c)
 
 
 ## File hierarchy 
